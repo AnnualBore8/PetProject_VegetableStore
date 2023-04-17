@@ -6,3 +6,15 @@ class IndexShopView(View):
 
     def get(self, request):
         return render(request, 'home/index.html')
+
+
+class AboutView(View):
+
+    def get(self, request):
+        return render(request, 'home/about.html')
+
+
+class ContactView(View):
+
+    def get(self, request):
+        return render(request, 'home/contact.html')
