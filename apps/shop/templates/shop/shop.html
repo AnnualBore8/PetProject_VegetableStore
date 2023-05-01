@@ -18,11 +18,31 @@
     		<div class="row justify-content-center">
     			<div class="col-md-10 mb-5 text-center">
     				<ul class="product-category">
-    					<li><a href="#" class="active">All</a></li>
-    					<li><a href="#">Vegetables</a></li>
-    					<li><a href="#">Fruits</a></li>
-    					<li><a href="#">Juice</a></li>
-    					<li><a href="#">Dried</a></li>
+    					{% if category == 'All' %}
+						<li><a href="{% url 'shop:shop' %}?category=All" class="active">All</a></li>
+						{% else %}
+						<li><a href="{% url 'shop:shop' %}?category=All">All</a></li>
+						{% endif %}
+						{% if category == 'Vegetables' %}
+						<li><a href="{% url 'shop:shop' %}?category=Vegetables" class="active">Vegetables</a></li>
+						{% else %}
+						<li><a href="{% url 'shop:shop' %}?category=Vegetables">Vegetables</a></li>
+						{% endif %}
+						{% if category == 'Fruits' %}
+						<li><a href="{% url 'shop:shop' %}?category=Fruits" class="active">Fruits</a></li>
+						{% else %}
+						<li><a href="{% url 'shop:shop' %}?category=Fruits">Fruits</a></li>
+						{% endif %}
+						{% if category == 'Juice' %}
+						<li><a href="{% url 'shop:shop' %}?category=Juice" class="active">Juice</a></li>
+						{% else %}
+						<li><a href="{% url 'shop:shop' %}?category=Juice">Juice</a></li>
+						{% endif %}
+						{% if category == 'Dried' %}
+						<li><a href="{% url 'shop:shop' %}?category=Dried" class="active">Dried</a></li>
+						{% else %}
+						<li><a href="{% url 'shop:shop' %}?category=Dried">Dried</a></li>
+						{% endif %}
     				</ul>
     			</div>
     		</div>
@@ -30,7 +50,7 @@
 				{% for product in data %}
     			<div class="col-md-6 col-lg-3 ftco-animate">
     				<div class="product">
-    					<a href="#" class="img-prod"><img class="img-fluid" src="/{{ product.image }}" alt="Colorlib Template">
+    					<a href="{% url 'shop:product-single' product.id %}" class="img-prod"><img class="img-fluid" src="/{{ product.image }}" alt="Colorlib Template">
     						{% if product.discount_value %}
 							<span class="status">{{product.discount_value}}%</span>
 							{% endif %}
