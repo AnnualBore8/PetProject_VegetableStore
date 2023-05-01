@@ -89,13 +89,46 @@
           <div class="col text-center">
             <div class="block-27">
               <ul>
-                <li><a href="#">&lt;</a></li>
-                <li class="active"><span>1</span></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li><a href="#">&gt;</a></li>
+				  {% if max_pages == 1 %}
+
+
+
+
+
+
+
+
+				  {% if previous %}
+				  <li><a href="{% url 'shop:shop' %}?category={{category}}&page={{page|add:-1}}">&lt;</a></li>
+				  {% else %}
+				  <li><</li>
+				  {% endif %}
+				  {% if data_pages.0 %}
+				      {% if page == 1 %}
+				      <li class="active"><span>1</span></li>
+				      {% else %}
+				      <li><span>1</span></li>
+				      {% endif %}
+				  {% else %}
+				  <li><span>...</span></li>
+				  {% endif %}
+				  <li><a href="#">2</a></li>
+				  <li><a href="#">3</a></li>
+				  <li><a href="#">4</a></li>
+				  {% if data_pages.2 %}
+				      {% if page == max_pages %}
+				      <li class="active"><span>{{max_pages}}</span></li>
+				      {% else %}
+				      <li><span>{{max_pages}}</span></li>
+				      {% endif %}
+				  {% else %}
+				  <li><span>...</span></li>
+				  {% endif %}
+				  {% if next %}
+				  <li><a href="{% url 'shop:shop' %}?category={{category}}&page={{page|add:1}}">&lt;</a></li>
+				  {% else %}
+				  <li>&gt;</li>
+				  {% endif %}
               </ul>
             </div>
           </div>
