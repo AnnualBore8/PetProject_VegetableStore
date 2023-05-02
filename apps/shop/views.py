@@ -7,6 +7,7 @@ from django.shortcuts import get_object_or_404
 from django.db.models.functions import Round, Cast
 from decimal import Decimal
 
+
 class ProductView(View):
 
     def get(self, request, product_id=1):
@@ -17,17 +18,21 @@ class ProductView(View):
 def get_pages_list(page, max_pages):
     if max_pages < 5:
         return list(range(1, max_pages + 1))
-    data = [1]
 
-    if page - 2 > 1:
-        data = [1, "..."]
+    data = [1]
+    if page > 3:
+        data += ["..."]
 
     if 2 < page < max_pages - 1:
         data += list(range(page - 1, page + 2))
-    elif 2 < page:
+    elif page == 1:
+        data += [2]
+    elif page == 2:
+        data += [2, 3]
+    elif page == max_pages - 1:
         data += [page - 1, page]
-    else:
-        data += [page]
+    elif page == max_pages:
+        data += [page - 1]
 
     if page + 2 < max_pages:
         data += ["..."]
@@ -40,7 +45,7 @@ class ShopView(View):
 
     def get(self, request):
 
-        items_per_page = 5
+        items_per_page = 2
 
         price_with_discount = ExpressionWrapper(
             F('price') * (100.0 - F('discount_value')) / 100.0,
@@ -64,13 +69,7 @@ class ShopView(View):
         items = paginator.get_page(page)
 
         max_pages = paginator.num_pages
-        data_pages = [1, None, max_pages]
-
-
-
-
-
-
+        data_pages = get_pages_list(page, max_pages)
 
         return render(request, 'shop/shop.html',
                       {"data": items,
