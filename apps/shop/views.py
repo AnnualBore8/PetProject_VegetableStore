@@ -45,7 +45,7 @@ class ShopView(View):
 
     def get(self, request):
 
-        items_per_page = 2
+        items_per_page = 5
 
         price_with_discount = ExpressionWrapper(
             F('price') * (100.0 - F('discount_value')) / 100.0,
@@ -65,7 +65,7 @@ class ShopView(View):
             products = products.filter(category__name=category)
 
         paginator = Paginator(products, items_per_page)
-        page = request.GET.get('page', 1)
+        page = int(request.GET.get('page', 1))
         items = paginator.get_page(page)
 
         max_pages = paginator.num_pages
