@@ -1,9 +1,12 @@
 from django.shortcuts import render
+from django.urls import reverse
 from django.views import View
 from .models import Product, Discount
+from apps.cart.models import Cart
+from django.contrib.auth.models import User
 from django.db.models import OuterRef, Subquery, F, ExpressionWrapper, DecimalField
 from django.core.paginator import Paginator
-from django.shortcuts import get_object_or_404
+from django.shortcuts import get_object_or_404, redirect
 from django.db.models.functions import Round, Cast
 from decimal import Decimal
 
@@ -79,3 +82,32 @@ class ShopView(View):
                        "previous": items.has_previous(),
                        "max_pages": max_pages,
                        "data_pages": data_pages})
+
+
+class ViewCartBuy(View):
+    def get(self, request, product_id):
+        product = get_object_or_404(Product, id=product_id)
+        user = get_object_or_404(User, id=request.user.id)
+        cart_items = Cart.objects.filter(user=user, product=product)
+        if cart_items:
+            cart_item = cart_items[0]
+            cart_item.quantity += 1
+        else:
+            cart_item = Cart(user=user, product=product)
+        cart_item.save()
+        return redirect('cart:cart')
+
+
+class ViewCartAdd(View):
+    def get(self, request, product_id):
+        product = get_object_or_404(Product, id=product_id)
+        user = get_object_or_404(User, id=request.user.id)
+        cart_items = Cart.objects.filter(user=user, product=product)
+        if cart_items:
+            cart_item = cart_items[0]
+            cart_item.quantity += 1
+        else:
+            cart_item = Cart(user=user, product=product)
+        cart_item.save()
+        data = "&".join([f"{key}={value}" for key, value in request.GET.items()])
+        return redirect(reverse('shop:shop')+"?"+data)
