@@ -25,4 +25,5 @@ urlpatterns = [
     path('checkout/', include('apps.checkout.urls')),
     path('blog/', include('apps.blog.urls')),
     path('login/', include('apps.login.urls')),
+    path('', include('social_django.urls', namespace='social')),
 ]
