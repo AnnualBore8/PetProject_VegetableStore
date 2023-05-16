@@ -9,6 +9,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
 from django.db.models.functions import Round, Cast
 from decimal import Decimal
+from apps.cart.views import fill_card_in_session
 
 
 class ProductView(View):
@@ -84,30 +85,41 @@ class ShopView(View):
                        "data_pages": data_pages})
 
 
+def add_to_card_in_session(request, product_id):
+    cart = fill_card_in_session(request)
+    cart[str(product_id)] = cart.get(str(product_id), 0) + 1
+    request.session['cart'] = cart
+    return cart
+
+
 class ViewCartBuy(View):
     def get(self, request, product_id):
-        product = get_object_or_404(Product, id=product_id)
-        user = get_object_or_404(User, id=request.user.id)
-        cart_items = Cart.objects.filter(user=user, product=product)
-        if cart_items:
-            cart_item = cart_items[0]
-            cart_item.quantity += 1
-        else:
-            cart_item = Cart(user=user, product=product)
-        cart_item.save()
+        add_to_card_in_session(request, product_id)
+        if request.user.is_authenticated:
+            product = get_object_or_404(Product, id=product_id)
+            user = get_object_or_404(User, id=request.user.id)
+            cart_items = Cart.objects.filter(user=user, product=product)
+            if cart_items:
+                cart_item = cart_items[0]
+                cart_item.quantity += 1
+            else:
+                cart_item = Cart(user=user, product=product)
+            cart_item.save()
         return redirect('cart:cart')
 
 
 class ViewCartAdd(View):
     def get(self, request, product_id):
-        product = get_object_or_404(Product, id=product_id)
-        user = get_object_or_404(User, id=request.user.id)
-        cart_items = Cart.objects.filter(user=user, product=product)
-        if cart_items:
-            cart_item = cart_items[0]
-            cart_item.quantity += 1
-        else:
-            cart_item = Cart(user=user, product=product)
-        cart_item.save()
+        add_to_card_in_session(request, product_id)
+        if request.user.is_authenticated:
+            product = get_object_or_404(Product, id=product_id)
+            user = get_object_or_404(User, id=request.user.id)
+            cart_items = Cart.objects.filter(user=user, product=product)
+            if cart_items:
+                cart_item = cart_items[0]
+                cart_item.quantity += 1
+            else:
+                cart_item = Cart(user=user, product=product)
+            cart_item.save()
         data = "&".join([f"{key}={value}" for key, value in request.GET.items()])
         return redirect(reverse('shop:shop')+"?"+data)
