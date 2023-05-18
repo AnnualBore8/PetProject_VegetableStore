@@ -15,6 +15,21 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import redirect
+from django.utils.translation import activate
+from django.conf import settings
+print(settings.LANGUAGE_COOKIE_NAME)
+
+
+def switch_language(request):
+    new_language = request.GET.get('language')
+    # request.session['django_language'] = new_language
+    response = redirect(request.META.get('HTTP_REFERER', '/'))
+    response.set_cookie(settings.LANGUAGE_COOKIE_NAME, new_language)
+    # activate(new_language)
+    # Перенаправление пользователя на предыдущую страницу
+    return response
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,4 +41,5 @@ urlpatterns = [
     path('blog/', include('apps.blog.urls')),
     path('login/', include('apps.login.urls')),
     path('', include('social_django.urls', namespace='social')),
+    path('switch-language/', switch_language, name='switch_language')
 ]
