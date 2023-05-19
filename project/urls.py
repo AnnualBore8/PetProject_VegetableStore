@@ -18,16 +18,13 @@ from django.urls import path, include
 from django.shortcuts import redirect
 from django.utils.translation import activate
 from django.conf import settings
-print(settings.LANGUAGE_COOKIE_NAME)
 
 
 def switch_language(request):
     new_language = request.GET.get('language')
-    # request.session['django_language'] = new_language
     response = redirect(request.META.get('HTTP_REFERER', '/'))
     response.set_cookie(settings.LANGUAGE_COOKIE_NAME, new_language)
-    # activate(new_language)
-    # Перенаправление пользователя на предыдущую страницу
+    # activate(new_language) # одна из возможностей активации локализации
     return response
 
 

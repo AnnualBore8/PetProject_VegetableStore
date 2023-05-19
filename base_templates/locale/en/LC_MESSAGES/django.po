@@ -1,0 +1,66 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-05-19 16:44+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+#: .\base.html:80
+msgid "Menu"
+msgstr ""
+
+#: .\base.html:85
+msgid "Home"
+msgstr ""
+
+#: .\base.html:87 .\base.html:89
+msgid "Shop"
+msgstr ""
+
+#: .\base.html:90
+msgid "Wishlist"
+msgstr ""
+
+#: .\base.html:91
+msgid "Single Product"
+msgstr ""
+
+#: .\base.html:92
+msgid "Cart"
+msgstr ""
+
+#: .\base.html:93
+msgid "Checkout"
+msgstr ""
+
+#: .\base.html:96
+msgid "About"
+msgstr ""
+
+#: .\base.html:97
+msgid "Blog"
+msgstr ""
+
+#: .\base.html:98
+msgid "Contact"
+msgstr ""
+
+#: .\base.html:102
+msgid "Logout"
+msgstr ""
+
+#: .\base.html:104
+msgid "Login"
+msgstr ""
