@@ -21,16 +21,16 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 #: .\home\templates\home\index.html:13
 msgid "We serve Fresh Vegestables &amp; Fruits"
-msgstr ""
+msgstr "Мы подаем свежие овощи и фрукты"
 
 #: .\home\templates\home\index.html:14 .\home\templates\home\index.html:29
 msgid "We deliver organic vegetables &amp; fruits"
-msgstr ""
+msgstr "Мы доставляем органические овощи и фрукты"
 
 #: .\home\templates\home\index.html:15 .\home\templates\home\index.html:30
 msgid "View Details"
-msgstr ""
+msgstr "Посмотреть детали"
 
 #: .\home\templates\home\index.html:28
 msgid "Fresh &amp; Organic Foods"
-msgstr ""
+msgstr "Свежая и органическая еда"

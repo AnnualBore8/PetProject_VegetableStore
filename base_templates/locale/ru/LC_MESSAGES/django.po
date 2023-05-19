@@ -21,48 +21,48 @@ msgstr ""
 "(n%100>=11 && n%100<=14)? 2 : 3);\n"
 #: .\base.html:80
 msgid "Menu"
-msgstr ""
+msgstr "Меню"
 
 #: .\base.html:85
 msgid "Home"
-msgstr ""
+msgstr "Главная"
 
 #: .\base.html:87 .\base.html:89
 msgid "Shop"
-msgstr ""
+msgstr "Магазин"
 
 #: .\base.html:90
 msgid "Wishlist"
-msgstr ""
+msgstr "Избранное"
 
 #: .\base.html:91
 msgid "Single Product"
-msgstr ""
+msgstr "Одиночный продукт"
 
 #: .\base.html:92
 msgid "Cart"
-msgstr ""
+msgstr "Корзина"
 
 #: .\base.html:93
 msgid "Checkout"
-msgstr ""
+msgstr "Оплата"
 
 #: .\base.html:96
 msgid "About"
-msgstr ""
+msgstr "О нас"
 
 #: .\base.html:97
 msgid "Blog"
-msgstr ""
+msgstr "Блог"
 
 #: .\base.html:98
 msgid "Contact"
-msgstr ""
+msgstr "Контакты"
 
 #: .\base.html:102
 msgid "Logout"
-msgstr ""
+msgstr "Выход"
 
 #: .\base.html:104
 msgid "Login"
-msgstr ""
+msgstr "Вход"
