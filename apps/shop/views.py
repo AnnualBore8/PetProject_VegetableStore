@@ -15,6 +15,15 @@ from apps.cart.views import fill_card_in_session
 class ProductView(View):
 
     def get(self, request, product_id=1):
+        history = request.session.get("history", [])
+        if product_id not in history:
+            if len(history) == 5:
+                history.pop(0)
+            history.append(product_id)
+        else:
+            history.remove(product_id)
+            history.insert(0, product_id)
+        request.session['history'] = history
         data = Product.objects.get(id=product_id)
         return render(request, 'shop/product-single.html', {"product": data})
 
